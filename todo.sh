@@ -13,7 +13,7 @@ if [ "$#" -lt 1 ]; then
 	if [ -f ~/.todo ]; then
 		usage
 	else
-		touch ~/.todo
+		echo "# TODO" > ~/.todo
 		echo "TODO file created, use \`todo -e\` to edit it."
 	fi
 else
