@@ -2,11 +2,13 @@
 
 function usage {
 	echo "todo usage:"
-	echo "	-c    View the TODO file using \`cat\`."
-	echo "	-e    Edit the TODO file."
-	echo "	-h    Print this usage message."
-	echo "	-l    View the TODO file using \`less\`."
+	echo "-a <string>	Append <string> to your TODO file"
+	echo "-c	View the TODO file using \`cat\`"
+	echo "-e	Edit the TODO file"
+	echo "-h	Print this usage message"
+	echo "-l	View the TODO file using \`less\`"
 }
+
 args=("$@")
 
 if [ "$#" -lt 1 ]; then
@@ -17,7 +19,11 @@ if [ "$#" -lt 1 ]; then
 		echo "TODO file created, use \`todo -e\` to edit it."
 	fi
 else
-	if [ "${args[0]}" = "-c" ]; then
+	if [ "${args[0]}" = "-a" ]; then
+		echo "Appending an item to your TODO file..."
+		echo "${args[1]}" >> ~/.todo
+		echo "[+] Appended \"${args[1]}\" to TODO file."
+	elif [ "${args[0]}" = "-c" ]; then
 		echo "Using \`cat\` to view TODO file"
 		cat ~/.todo
 	elif [ "${args[0]}" = "-e" ]; then
